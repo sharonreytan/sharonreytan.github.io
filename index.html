@@ -806,7 +806,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           </div>
 
           <figure class="diagram">
-            <svg viewBox="0 0 340 400" role="img" aria-label="Pipeline diagram: MongoDB feeds the sync engine, which contains a per-ID lock manager and a priority queue, then writes to Elasticsearch, which serves every bank search. Average latency improved from 3 minutes to 5 seconds, at more than 1 billion events per day.">
+            <svg viewBox="0 0 340 400" role="img" aria-label="Pipeline diagram: MongoDB feeds the sync engine, which contains a per-ID lock manager, a priority queue, and partial document updates, then writes to Elasticsearch, which serves every bank search. Average latency improved from 3 minutes to 5 seconds, at more than 1 billion events per day.">
               <title>MongoDB to Elasticsearch sync engine pipeline</title>
               <defs>
                 <marker id="ah-c" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
@@ -819,12 +819,15 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
               <text class="dg-note" x="182" y="78">joining-on-write</text>
               <rect class="dg-gold" x="20" y="100" width="300" height="112"></rect>
               <text class="dg-goldtxt" x="170" y="126" text-anchor="middle">SYNC ENGINE</text>
-              <rect class="dg-inner" x="36" y="138" width="130" height="56"></rect>
-              <text class="dg-txt" x="101" y="160" text-anchor="middle">PER-ID LOCK</text>
-              <text class="dg-txt" x="101" y="178" text-anchor="middle">MANAGER</text>
-              <rect class="dg-inner" x="174" y="138" width="130" height="56"></rect>
-              <text class="dg-txt" x="239" y="160" text-anchor="middle">PRIORITY</text>
-              <text class="dg-txt" x="239" y="178" text-anchor="middle">QUEUE</text>
+              <rect class="dg-inner" x="30" y="138" width="88" height="56"></rect>
+              <text class="dg-txt" x="74" y="160" text-anchor="middle">PER-ID</text>
+              <text class="dg-txt" x="74" y="178" text-anchor="middle">LOCKS</text>
+              <rect class="dg-inner" x="126" y="138" width="88" height="56"></rect>
+              <text class="dg-txt" x="170" y="160" text-anchor="middle">PRIORITY</text>
+              <text class="dg-txt" x="170" y="178" text-anchor="middle">QUEUE</text>
+              <rect class="dg-inner" x="222" y="138" width="88" height="56"></rect>
+              <text class="dg-txt" x="266" y="160" text-anchor="middle">PARTIAL</text>
+              <text class="dg-txt" x="266" y="178" text-anchor="middle">UPDATES</text>
               <path class="dg-edge" d="M170 212 V256" marker-end="url(#ah-c)"></path>
               <text class="dg-note" x="182" y="230">avg latency</text>
               <text class="dg-goldtxt" x="182" y="248">3 min → 5 s</text>
