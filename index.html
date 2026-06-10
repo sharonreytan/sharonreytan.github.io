@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharon Reytan — Engineering Leader · Autonomous AI & Distributed Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f11;          /* near-black */
+    --ink: #ece9e2;         /* warm off-white */
+    --muted: #8f8d86;       /* warm grey */
+    --accent: #d4a256;      /* single accent — warm gold */
+    --hair: #29292d;        /* hairline */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+  a { color: var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 100px 0 64px; }
+  .hero .kicker {
+    font-size: 11px; font-weight: 600; letter-spacing: .34em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 26px;
+  }
+  .hero h1 {
+    font-size: 66px; font-weight: 850; letter-spacing: -.035em; line-height: 1.02;
+  }
+  .hero .headline {
+    margin-top: 16px; font-size: 17px; font-weight: 400; color: var(--muted);
+    letter-spacing: -.01em;
+  }
+  .hero .pitch {
+    margin-top: 34px; font-size: 20px; line-height: 1.65; font-weight: 350;
+    max-width: 720px; color: var(--ink);
+  }
+  .hero .pitch b { font-weight: 700; }
+  .hero .contact { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 28px; }
+  .hero .contact a, .hero .contact span {
+    font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none;
+    letter-spacing: .02em;
+  }
+  .hero .contact a { border-bottom: 1px solid var(--hair); padding-bottom: 2px; }
+  .hero .contact a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ---------- proof row ---------- */
+  .proof { border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+  .proof .grid { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .proof .cell { padding: 28px 18px 26px 0; }
+  .proof .cell + .cell { border-left: 1px solid var(--hair); padding-left: 18px; }
+  .proof .v { font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
+  .proof .k {
+    font-size: 10.5px; font-weight: 500; color: var(--muted); margin-top: 7px;
+    line-height: 1.5; text-transform: uppercase; letter-spacing: .08em;
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: 72px 0 0; }
+  section .head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 34px; }
+  section .head .idx { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .1em; }
+  section .head h2 {
+    font-size: 12px; font-weight: 700; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  section .head::after { content: ""; flex: 1; height: 1px; background: var(--hair); align-self: center; }
+  section .lede { font-size: 15px; color: var(--muted); margin: -14px 0 36px; max-width: 660px; line-height: 1.65; }
+  section .lede b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- advantage ---------- */
+  .triad { font-size: 30px; font-weight: 800; letter-spacing: -.02em; line-height: 1.35; max-width: 760px; }
+  .triad .x { color: var(--accent); font-weight: 300; padding: 0 10px; }
+  .adv-claim { margin-top: 22px; font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 640px; }
+  .adv-claim b { color: var(--ink); font-weight: 600; }
+  .adv-quote {
+    margin-top: 26px; font-size: 22px; font-weight: 350; font-style: italic;
+    color: var(--accent); letter-spacing: -.01em;
+  }
+
+  /* ---------- flagship entries ---------- */
+  .entry {
+    display: grid; grid-template-columns: 200px 1fr; gap: 36px;
+    padding: 38px 0; border-top: 1px solid var(--hair);
+  }
+  .entry:first-of-type { border-top: none; padding-top: 0; }
+  .entry .meta .n { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 10px; }
+  .entry .meta .where {
+    font-size: 11px; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted); line-height: 1.7;
+  }
+  .entry h3 { font-size: 24px; font-weight: 750; letter-spacing: -.02em; line-height: 1.25; margin-bottom: 14px; }
+  .entry p { font-size: 14px; line-height: 1.75; color: var(--muted); margin-bottom: 16px; max-width: 600px; }
+  .entry p b { color: var(--ink); font-weight: 600; }
+  .entry .stats { font-size: 13.5px; font-weight: 700; color: var(--accent); letter-spacing: .01em; }
+  .entry .stats span + span::before { content: "·"; color: var(--hair); padding: 0 12px; font-weight: 400; }
+
+  /* ---------- hard parts ---------- */
+  .hard { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+  .hp { padding: 30px 0; border-top: 1px solid var(--hair); }
+  .hp:nth-child(-n+2) { border-top: none; padding-top: 0; }
+  .hp h4 { font-size: 16px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 4px; }
+  .hp .patent {
+    display: block; font-size: 10px; font-weight: 600; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+  }
+  .hp .nopatent { display: block; height: 10px; margin-bottom: 12px; }
+  .hp p { font-size: 13px; line-height: 1.75; color: var(--muted); }
+  .hp p b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- leadership ---------- */
+  .lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+  .lcard .roman { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .14em; margin-bottom: 12px; }
+  .lcard h4 { font-size: 16px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 12px; line-height: 1.35; }
+  .lcard p { font-size: 13px; line-height: 1.75; color: var(--muted); }
+  .lcard p b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- timeline ---------- */
+  .trow {
+    display: grid; grid-template-columns: 200px 1fr; gap: 36px;
+    padding: 24px 0; border-top: 1px solid var(--hair);
+  }
+  .trow:first-of-type { border-top: none; padding-top: 0; }
+  .trow .when { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .1em; padding-top: 3px; }
+  .trow h4 { font-size: 15.5px; font-weight: 700; letter-spacing: -.01em; }
+  .trow p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-top: 5px; max-width: 600px; }
+  .trow p b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- stack ---------- */
+  .stack { font-size: 15px; line-height: 2.1; max-width: 740px; color: var(--muted); font-weight: 400; }
+  .stack b { color: var(--ink); font-weight: 600; }
+  .stack .sep { color: var(--accent); padding: 0 10px; font-weight: 300; }
+
+  /* ---------- beyond ---------- */
+  .beyond { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+  .beyond h4 { font-size: 14.5px; font-weight: 700; margin-bottom: 10px; letter-spacing: -.01em; }
+  .beyond p { font-size: 13px; line-height: 1.75; color: var(--muted); }
+  .beyond p b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- footer ---------- */
+  footer { margin-top: 88px; border-top: 1px solid var(--hair); padding: 60px 0 80px; }
+  footer .line {
+    font-size: 30px; font-weight: 350; font-style: italic; letter-spacing: -.02em;
+    line-height: 1.4; max-width: 700px;
+  }
+  footer .line b { font-weight: 750; font-style: normal; color: var(--accent); }
+  footer .sub { font-size: 14px; color: var(--muted); margin-top: 16px; max-width: 600px; line-height: 1.65; }
+  footer .contact { margin-top: 34px; display: flex; gap: 28px; flex-wrap: wrap; }
+  footer .contact a {
+    font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none;
+    border-bottom: 1px solid var(--hair); padding-bottom: 2px;
+  }
+  footer .contact a:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 760px) {
+    .hero h1 { font-size: 42px; }
+    .proof .grid { grid-template-columns: repeat(2, 1fr); }
+    .proof .cell + .cell { border-left: none; padding-left: 0; }
+    .proof .cell { border-top: 1px solid var(--hair); }
+    .entry, .trow { grid-template-columns: 1fr; gap: 10px; }
+    .hard, .lead, .beyond { grid-template-columns: 1fr; gap: 28px; }
+    .hp { border-top: 1px solid var(--hair); padding: 24px 0; }
+    .triad { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= HERO ================= -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="kicker">Engineering Leader — Autonomous AI Systems &amp; Distributed Backends</div>
+      <h1>Sharon Reytan</h1>
+      <div class="headline">10+ years shipping production systems — and the teams that run them.</div>
+      <p class="pitch">
+        I lead from the <b>customer and product backward to the tech</b> — autonomous AI in the core,
+        distributed backends at <b>&gt;1B events/day</b>. I <b>lead teams</b>, <b>architect the system</b>,
+        and <b>write the hard parts myself</b>.
+      </p>
+      <div class="contact">
+        <a href="mailto:SharonReytan@gmail.com">SharonReytan@gmail.com</a>
+        <span>Israel</span>
+        <span>3 patents filed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PROOF ROW ================= -->
+  <div class="wrap">
+    <div class="proof">
+      <div class="grid">
+        <div class="cell"><div class="v">~95%</div><div class="k">AI platform cost cut, +5× faster</div></div>
+        <div class="cell"><div class="v">&gt;1B</div><div class="k">events / day on infra I built</div></div>
+        <div class="cell"><div class="v">99.99%</div><div class="k">availability · incidents 8/yr → 1/yr</div></div>
+        <div class="cell"><div class="v">3</div><div class="k">patents filed — agentic AI safety &amp; extraction</div></div>
+        <div class="cell"><div class="v">5 yrs</div><div class="k">engineer → R&amp;D group manager</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- ================= ADVANTAGE ================= -->
+    <section>
+      <div class="head"><span class="idx">01</span><h2>Why I'm Different</h2></div>
+      <div class="triad">People Leadership<span class="x">×</span>Hands-On Engineering<span class="x">×</span>Product Judgment</div>
+      <p class="adv-claim">Most engineering leaders bring <b>one</b> of these.
+      <b style="color:var(--accent)">I bring all three — proven in production, backed by patents.</b><br>
+      My depth is <b>distributed systems at scale</b> — and my last act took <b>agentic AI from prototype to production</b>:
+      leading a cross-functional team across frontend, scalable backend, and AI agents, and writing some of the hardest pieces myself.</p>
+    </section>
+
+    <!-- ================= FLAGSHIP WORK ================= -->
+    <section>
+      <div class="head"><span class="idx">02</span><h2>Flagship Work</h2></div>
+      <p class="lede">Three systems, three different problems — the same pattern: <b>start from the customer, set the architecture, write the hardest part, prove it with numbers.</b></p>
+
+      <div class="entry">
+        <div class="meta">
+          <div class="n">No. 1</div>
+          <div class="where">Intuit<br>AI Engineering Team Lead</div>
+        </div>
+        <div>
+          <h3>Founded an autonomous-AI data-acquisition platform</h3>
+          <p>Started it as a <b>side project on top of my day job</b>, then asked for the team and built it.
+          The first system I created was <b>deliberately experimental</b> — a pure agent-to-agent flow, built on a
+          bet that LLM costs would fall fast. The quality arrived (<b>~98% precision/recall</b>); the economics
+          didn't. So I made the call <b>against my own build</b>: we pivoted to <b>code-generating agents with a
+          self-healing loop</b> — agents craft and repair the integration code, fail-fast scripts trigger their own
+          healing, every change regression-tested — and <b>completed and shipped it to production in 3 months</b>.
+          That pivot is the ~95% / 5× line in the numbers above.</p>
+          <div class="stats"><span>35 providers live</span><span>shipped in 3 months</span><span>~98% P/R</span><span>3 patents</span></div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <div class="n">No. 2</div>
+          <div class="where">Intuit<br>Software Engineering Team Leader</div>
+        </div>
+        <div>
+          <h3>Turned around a tier-2 platform serving millions</h3>
+          <p>Owned the screen-scraping platform that <b>40+ engineers built their integrations on</b> —
+          multi-million users, 15K+ provider integrations. Drove cost down with Kubernetes autoscaling and
+          shared-infra migration, engineered reliability in by construction, and <b>automated the team's toil
+          away</b> — freeing most of its capacity for higher-value work. Also designed the architecture of its next-gen
+          successor's acquisition core — the request protocol and the headless-browser foundation — and
+          <b>led the team that built it</b>.</p>
+          <div class="stats"><span>−45% cost</span><span>99.99% uptime</span><span>incidents 8→1/yr</span><span>+10% success</span></div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <div class="n">No. 3</div>
+          <div class="where">AccessFintech<br>IC → R&amp;D Group Manager</div>
+        </div>
+        <div>
+          <h3>Built the infrastructure a fintech scaled on</h3>
+          <p>Joined a 29-person startup as a backend engineer; left a ~150-person company as <b>R&amp;D group
+          manager of a global, cross-functional group — 4 teams, 20 engineers (Frontend, QA, WebAPI,
+          Infrastructure) across Israel and the UK</b>. The signature build: I took over the platform's
+          <b>busiest service</b> — the MongoDB→Elasticsearch sync feeding every search the world's largest
+          banks ran — from deadlocks, data loss, and hours of latency, and rebuilt it into <b>the most stable
+          service in the company</b>: average latency <b>3 min → 5 s</b>, worst case <b>6 h → 2 min</b>, no
+          high-severity bugs for 1.5 years. Plus the org-wide Elasticsearch, Kafka, and caching libraries
+          every team built on.</p>
+          <div class="stats"><span>&gt;1B events/day</span><span>latency 3m → 5s</span><span>25 microservices</span><span>4 teams, 2 countries</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE HARD PARTS ================= -->
+    <section>
+      <div class="head"><span class="idx">03</span><h2>The Hard Parts I Wrote Myself</h2></div>
+      <p class="lede">Everything here was built with strong teams — these are the pieces I wrote <b>with my own hands</b>.
+      (The work also produced <b>3 patent filings I co-invented</b>; the safety gate below is mine from <b>concept to code</b>.)</p>
+      <div class="hard">
+
+        <div class="hp">
+          <h4>The agent safety gate</h4>
+          <span class="patent">Patent filed — concept to code</span>
+          <p>How do you let an AI agent act inside a <b>live, authenticated banking session</b> — without trusting it?
+          My answer: the agent never touches the browser. Every proposed action is validated against an
+          <b>allowlist gate</b> before a deterministic executor runs it; rejections feed precise feedback back to
+          the agent. The gate is never skipped — and its rejection log kept surfacing legitimate new paths,
+          so it <b>grew coverage instead of just blocking</b>.</p>
+        </div>
+
+        <div class="hp">
+          <h4>The eval framework &amp; observability</h4>
+          <span class="nopatent"></span>
+          <p><b>Measure before you steer.</b> I built much of the evaluation framework that became the product's
+          steering signal — per-provider ground truth, full-session scoring, repeat runs for consistency. It's
+          what proved the first agents at <b>~98% precision/recall</b> — and what justified killing the approach
+          anyway on cost. Plus the observability tool: one correlation id → the full session audit, DOMs,
+          screenshots, and highlighted agent actions.</p>
+        </div>
+
+        <div class="hp">
+          <h4>The xpath generator</h4>
+          <span class="nopatent"></span>
+          <p>Screen-scraping lives or dies on selectors. I wrote the generator that crafts <b>xpaths robust enough
+          to survive layout changes</b> yet precise enough to never grab the wrong element — sometimes embedding
+          entity data into the selector itself to enforce correctness. The <b>code-generation pipeline runs on it</b>.</p>
+        </div>
+
+        <div class="hp">
+          <h4>The Elasticsearch library &amp; the sync engine</h4>
+          <span class="nopatent"></span>
+          <p>At AccessFintech I wrote the <b>org-wide Elasticsearch library</b> — a proprietary filter language so
+          any engineer could query a famously unforgiving datastore safely — and rebuilt the <b>sync engine</b>
+          joining-on-write across the entity graph from MongoDB into Elasticsearch. The parts I'm proudest of:
+          a <b>per-ID lock manager</b> that cut lock waits 10 s → 0.5 s, a priority queue + latest-version-wins
+          entity store that brought UI latency to ~2 s, and <b>partial document updates in Elasticsearch — a
+          mechanism that didn't exist; we invented it</b>. It's the work that won me the infrastructure team.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= LEADERSHIP ================= -->
+    <section>
+      <div class="head"><span class="idx">04</span><h2>How I Lead</h2></div>
+      <p class="lede">Strategy and people aren't the soft part of the job — they're the <b>multiplier</b>.</p>
+      <div class="lead">
+
+        <div class="lcard">
+          <div class="roman">I.</div>
+          <h4>I challenge direction — with data</h4>
+          <p>When production numbers say the strategy is wrong, I say it — at any altitude of the room.
+          I've redirected a flagship program by putting the hard question to senior leadership with the
+          data in hand; my team <b>proved the new direction with a working end-to-end MVP in two months</b>.
+          Ask me about it.</p>
+        </div>
+
+        <div class="lcard">
+          <div class="roman">II.</div>
+          <h4>I grow engineers into leaders</h4>
+          <p>I build teams from scratch and <b>bet on people early</b> — graduates get real ownership of critical
+          services, seniors get next-level scope before the title. The engineers I've grown went on to
+          <b>lead teams, drive flagship projects, and build things of their own</b>. The stories are better in person.</p>
+        </div>
+
+        <div class="lcard">
+          <div class="roman">III.</div>
+          <h4>I lead from the customer backward</h4>
+          <p>Product and customer before tech — always. I aim the roadmap at what <b>actually moves customers</b>:
+          most recently, deliberately targeting the long tail of integrations to free engineers for
+          business-critical work. My teams ship for the user, not for the demo.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= TIMELINE ================= -->
+    <section>
+      <div class="head"><span class="idx">05</span><h2>The Arc</h2></div>
+
+      <div class="trow">
+        <div class="when">2025 — PRESENT</div>
+        <div>
+          <h4>Intuit — AI Engineering Team Lead</h4>
+          <p>Founded the autonomous-AI data-acquisition team from a side project; led it through every pivot to production. <b>3 patents filed.</b></p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="when">2024 — 2025</div>
+        <div>
+          <h4>Intuit — Software Engineering Team Leader</h4>
+          <p>Turned around the Java data-acquisition platform (<b>−45% cost, 99.99% uptime</b>); built the next-gen platform's request protocol and headless-browser foundation.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="when">2018 — 2023</div>
+        <div>
+          <h4>AccessFintech — Engineer → Team Lead → R&amp;D Group Manager</h4>
+          <p>Five years, three promotions, all self-initiated. Org-wide infrastructure libraries at <b>&gt;1B events/day</b>; led a global, cross-functional group — <b>4 teams, 20 engineers, Israel + UK</b>.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="when">2015 — 2018</div>
+        <div>
+          <h4>Simlat · Bar-Net — Software Engineer</h4>
+          <p>Real-time aircraft flight simulation (C++/C#); telephony systems. Foundations during a <b>cum-laude B.Sc. in Computer Science (GPA 91)</b>.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="when">2011 — 2013</div>
+        <div>
+          <h4>IDF — Air Traffic Controller</h4>
+          <p>Real time, zero error, own the call under pressure. The reliability instinct started here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STACK ================= -->
+    <section>
+      <div class="head"><span class="idx">06</span><h2>Working Stack</h2></div>
+      <p class="stack">
+        <b>Python</b><span class="sep">/</span><b>C# .NET</b><span class="sep">/</span><b>Kafka</b><span class="sep">/</span><b>Elasticsearch</b><span class="sep">/</span><b>GraphQL</b><span class="sep">/</span><b>microservices &amp; caching at scale</b><span class="sep">/</span><b>LLM evaluation &amp; observability</b><span class="sep">/</span>Java<span class="sep">/</span>LangGraph &amp; multi-agent orchestration<span class="sep">/</span>code-generating agents<span class="sep">/</span>MongoDB<span class="sep">/</span>Kubernetes<span class="sep">/</span>headless browsers
+      </p>
+    </section>
+
+    <!-- ================= BEYOND ================= -->
+    <section>
+      <div class="head"><span class="idx">07</span><h2>Beyond the Keyboard</h2></div>
+      <div class="beyond">
+        <div>
+          <h4>Challenger — League of Legends</h4>
+          <p>The second-highest competitive rank. I'm in it for the <b>strategy, the team play, and the technique</b> — the same things that energize me at work.</p>
+        </div>
+        <div>
+          <h4>Builder, even at rest</h4>
+          <p>14 years of piano — and when the army base had none, I <b>taught myself guitar</b>. In my spare time I
+          build <b>mobile games in Unity</b> and sell packages on the Asset Store. I don't wait for the right conditions.</p>
+        </div>
+        <div>
+          <h4>Art school before computer science</h4>
+          <p>Visual arts at Thelma Yellin. I think in <b>possibilities first, specs second</b> — it shows in the systems I design.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="wrap">
+      <div class="line">I'm at my best where there's <b>no playbook yet.</b></div>
+      <div class="sub">A product, a team, or an architecture that has to be built from zero — and made to work in production.</div>
+      <div class="contact">
+        <a href="mailto:SharonReytan@gmail.com">SharonReytan@gmail.com</a>
+        <a href="tel:+972544470121">+972-54-4470121</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
