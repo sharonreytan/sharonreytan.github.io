@@ -767,34 +767,30 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           <div class="stats"><span>35 providers live</span> <span>shipped in 3 months</span> <span>~98% P/R</span> <span>3 patents</span></div>
 
           <figure class="diagram">
-            <svg viewBox="0 0 340 290" role="img" aria-label="Loop diagram of the self-healing code generation cycle: agents craft and repair integration code, fail-fast scripts detect failures, self-healing is triggered and feeds back to the agents, every change is regression-tested and ships to production.">
+            <svg viewBox="0 0 420 276" role="img" aria-label="The self-healing loop, four numbered steps: one, agents craft the integration code; two, it runs in production fail-fast; three, a broken run triggers the agents to repair the code; four, the fix is regression-tested, and when tests are green it redeploys back to production.">
               <title>Self-healing code-generation loop</title>
               <defs>
                 <marker id="ah-b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
                   <path d="M0 0L8 4L0 8z" class="dg-head"></path>
                 </marker>
               </defs>
-              <rect class="dg-box" x="10" y="16" width="150" height="52"></rect>
-              <text class="dg-txt" x="85" y="38" text-anchor="middle">AGENTS CRAFT</text>
-              <text class="dg-txt" x="85" y="56" text-anchor="middle">&amp; REPAIR CODE</text>
-              <rect class="dg-box" x="180" y="16" width="150" height="52"></rect>
-              <text class="dg-txt" x="255" y="38" text-anchor="middle">FAIL-FAST</text>
-              <text class="dg-txt" x="255" y="56" text-anchor="middle">SCRIPTS</text>
-              <rect class="dg-box" x="180" y="140" width="150" height="52"></rect>
-              <text class="dg-txt" x="255" y="162" text-anchor="middle">TRIGGER</text>
-              <text class="dg-txt" x="255" y="180" text-anchor="middle">SELF-HEALING</text>
-              <rect class="dg-box" x="10" y="140" width="150" height="52"></rect>
-              <text class="dg-txt" x="85" y="162" text-anchor="middle">REGRESSION-</text>
-              <text class="dg-txt" x="85" y="180" text-anchor="middle">TESTED</text>
-              <path class="dg-edge" d="M160 42 H174" marker-end="url(#ah-b)"></path>
-              <path class="dg-edge" d="M255 68 V134" marker-end="url(#ah-b)"></path>
-              <path class="dg-edge" d="M180 166 H166" marker-end="url(#ah-b)"></path>
-              <path class="dg-edge dg-dash" d="M85 140 V74" marker-end="url(#ah-b)"></path>
-              <path class="dg-edge" d="M85 192 V226" marker-end="url(#ah-b)"></path>
-              <rect class="dg-gold" x="10" y="230" width="150" height="44"></rect>
-              <text class="dg-goldtxt" x="85" y="257" text-anchor="middle">PRODUCTION</text>
+              <rect class="dg-box" x="65" y="14" width="220" height="40"></rect>
+              <text class="dg-txt" x="175" y="39" text-anchor="middle"><tspan class="dg-goldtxt">1</tspan> · AGENTS CRAFT THE CODE</text>
+              <path class="dg-edge" d="M175 54 V76" marker-end="url(#ah-b)"></path>
+              <rect class="dg-gold" x="65" y="82" width="220" height="40"></rect>
+              <text class="dg-goldtxt" x="175" y="107" text-anchor="middle">2 · RUNS IN PROD · FAIL-FAST</text>
+              <path class="dg-edge" d="M175 122 V144" marker-end="url(#ah-b)"></path>
+              <text class="dg-note" x="187" y="138">✗ a run breaks</text>
+              <rect class="dg-box" x="65" y="150" width="220" height="40"></rect>
+              <text class="dg-txt" x="175" y="175" text-anchor="middle"><tspan class="dg-goldtxt">3</tspan> · AGENTS REPAIR THE CODE</text>
+              <path class="dg-edge" d="M175 190 V212" marker-end="url(#ah-b)"></path>
+              <rect class="dg-box" x="65" y="218" width="220" height="40"></rect>
+              <text class="dg-txt" x="175" y="243" text-anchor="middle"><tspan class="dg-goldtxt">4</tspan> · REGRESSION-TESTED</text>
+              <path class="dg-edge dg-dash" d="M285 238 H380 V102 H291" marker-end="url(#ah-b)"></path>
+              <text class="dg-note" x="296" y="166">✓ tests green —</text>
+              <text class="dg-note" x="296" y="184">redeploys</text>
             </svg>
-            <figcaption>The self-healing loop — failures trigger their own repair; only tested changes ship.</figcaption>
+            <figcaption>The loop: a broken run triggers its own repair; only green tests go back to production.</figcaption>
           </figure>
         </div>
       </article>
