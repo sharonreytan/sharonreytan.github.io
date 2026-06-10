@@ -502,6 +502,7 @@ footer .line {
 footer .line b { font-style: normal; font-weight: 800; color: var(--accent); }
 footer .sub { font-size: 16px; color: var(--muted); margin-top: 18px; line-height: 1.7; }
 footer .actions { margin-top: 40px; display: flex; gap: 14px 20px; flex-wrap: wrap; align-items: center; }
+footer .actions + .actions { margin-top: 20px; }
 .cta {
   font-size: 13px; font-weight: 600; letter-spacing: .04em;
   color: var(--accent); text-decoration: none;
@@ -1193,9 +1194,13 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
     <p class="line" data-reveal>I'm at my best where there's <b>no playbook yet.</b></p>
     <p class="sub" data-reveal style="--i:1">A product, a team, or an architecture that has to be built from zero — and made to work in production.</p>
     <div class="actions" data-reveal style="--i:2">
-      <a class="cta" href="mailto:SharonReytan@gmail.com">SharonReytan@gmail.com</a>
       <button class="ghostbtn" id="copy-email" type="button">copy email</button>
       <button class="ghostbtn js-print" type="button" aria-label="Save this page as a PDF">save as PDF</button>
+    </div>
+    <div class="actions" data-reveal style="--i:3">
+      <a class="iconlink" href="mailto:SharonReytan@gmail.com" aria-label="Email SharonReytan@gmail.com" title="SharonReytan@gmail.com">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g class="ic-stroke"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M22 6l-10 7L2 6"></path></g></svg>
+      </a>
       <a class="iconlink" href="https://www.linkedin.com/in/sharon-reytan/" aria-label="LinkedIn profile" title="LinkedIn">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ic-fill" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"></path></svg>
       </a>
