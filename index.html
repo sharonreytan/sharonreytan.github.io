@@ -955,16 +955,16 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           and <b>partial document updates in Elasticsearch — a mechanism that didn't exist; we invented it</b>.</p>
 
           <figure class="diagram">
-            <svg viewBox="0 0 340 240" role="img" aria-label="Diagram of the per-ID lock manager: before, one global lock made every write wait, with lock waits of 10 seconds; after, each entity ID gets its own lock, writes proceed in parallel, and lock waits drop to half a second.">
+            <svg viewBox="0 0 340 240" role="img" aria-label="Diagram of the per-ID lock manager: before, a shared pool of 32 thousand hashed locks caused collisions and 10-second waits; after, each entity ID gets its own lock, writes proceed in parallel, and lock waits drop to half a second.">
               <title>Per-ID lock manager</title>
               <defs>
                 <marker id="ah-e" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
                   <path d="M0 0L8 4L0 8z" class="dg-head"></path>
                 </marker>
               </defs>
-              <text class="dg-note" x="10" y="18">before</text>
+              <text class="dg-note" x="10" y="18">before — a shared pool of 32K hashed locks</text>
               <rect class="dg-box" x="10" y="26" width="320" height="42"></rect>
-              <text class="dg-txt" x="170" y="52" text-anchor="middle">ONE GLOBAL LOCK · WAIT 10 S</text>
+              <text class="dg-txt" x="170" y="52" text-anchor="middle">COLLISIONS · WAIT 10 S</text>
               <text class="dg-note" x="10" y="106">after — a lock per entity ID</text>
               <rect class="dg-gold" x="10" y="114" width="98" height="40"></rect>
               <text class="dg-goldtxt" x="59" y="139" text-anchor="middle">LOCK · ID A</text>
