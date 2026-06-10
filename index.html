@@ -367,7 +367,7 @@ section.block .wrap { position: relative; z-index: 1; }
 .entry p { font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 18px; text-wrap: pretty; }
 .entry p b { color: var(--ink); }
 .stats { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .01em; }
-.stats span { display: inline-block; padding: 4px 0; }
+.stats span { display: inline-block; padding: 4px 0; white-space: nowrap; }
 .stats span + span { border-left: 1px solid var(--hair); margin-left: 12px; padding-left: 13px; }
 
 /* ---------- 10. THE HARD PARTS ---------- */
@@ -708,7 +708,9 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
     <span class="ghostnum" aria-hidden="true">01</span>
     <div class="wrap">
       <div class="head" data-reveal><span class="idx">01</span><h2 id="h-edge">Why I'm Different</h2></div>
-      <div class="triad" data-reveal><span class="t">People Leadership</span><span class="x" aria-hidden="true">×</span><span class="t">Hands-On Engineering</span><span class="x" aria-hidden="true">×</span><span class="t">Product Judgment</span></div>
+      <div class="triad" data-reveal><span class="t">People Leadership</span> <span class="x" aria-hidden="true">×</span>
+      <span class="t">Hands-On Engineering</span> <span class="x" aria-hidden="true">×</span>
+      <span class="t">Product Judgment</span></div>
       <p class="adv-claim" data-reveal style="--i:1">Most engineering leaders bring <b>one</b> of these.
       <b style="color:var(--accent)">I bring all three — proven in production, backed by patents.</b><br>
       My depth is <b>distributed systems at scale</b>; my last act took <b>agentic AI from prototype to production</b>.</p>
@@ -733,7 +735,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           The first system — pure agent-to-agent — hit <b>~98% precision/recall</b>; the economics didn't.
           I made the call <b>against my own build</b>: pivot to <b>code-generating agents with a self-healing
           loop</b> — shipped in 3 months, <b>~95% cheaper, 5× faster</b>.</p>
-          <div class="stats"><span>35 providers live</span><span>shipped in 3 months</span><span>~98% P/R</span><span>3 patents</span></div>
+          <div class="stats"><span>35 providers live</span> <span>shipped in 3 months</span> <span>~98% P/R</span> <span>3 patents</span></div>
 
           <figure class="diagram">
             <svg viewBox="0 0 340 290" role="img" aria-label="Loop diagram of the self-healing code generation cycle: agents craft and repair integration code, fail-fast scripts detect failures, self-healing is triggered and feeds back to the agents, every change is regression-tested and ships to production.">
@@ -779,7 +781,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           multi-million users, 15K+ provider integrations. Cut cost 45%, <b>automated the team's toil away</b> —
           freed 6 of 8 engineers for higher-value work — then designed its successor's acquisition core and
           <b>led that project within a multi-team effort</b>.</p>
-          <div class="stats"><span>−45% cost</span><span>99.99% uptime</span><span>incidents 8→1/yr</span><span>+10% success</span></div>
+          <div class="stats"><span>−45% cost</span> <span>99.99% uptime</span> <span>incidents 8→1/yr</span> <span>+10% success</span></div>
 
           <div class="deltas" role="group" aria-label="Before and after metrics">
             <div class="delta">
@@ -807,7 +809,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           Israel + UK</b> — by year five. Signature build: rebuilt the platform's <b>busiest service</b>,
           the MongoDB→Elasticsearch sync behind every search the world's largest banks ran, into its most
           stable. Plus the org-wide Kafka, caching, and Elasticsearch libraries every team built on.</p>
-          <div class="stats"><span>&gt;1B events/day</span><span>latency 3m → 5s</span><span>25 microservices</span><span>4 teams, 2 countries</span></div>
+          <div class="stats"><span>&gt;1B events/day</span> <span>latency 3m → 5s</span> <span>25 microservices</span> <span>4 teams, 2 countries</span></div>
 
           <div class="deltas" role="group" aria-label="Before and after metrics">
             <div class="delta">
@@ -1099,7 +1101,20 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
     <div class="wrap">
       <div class="head" data-reveal><span class="idx">06</span><h2 id="h-stack">Working Stack</h2></div>
       <p class="stack" data-reveal>
-        <b>Python</b><span class="sep" aria-hidden="true">/</span><b>C# .NET</b><span class="sep" aria-hidden="true">/</span><b>Kafka</b><span class="sep" aria-hidden="true">/</span><b>Elasticsearch</b><span class="sep" aria-hidden="true">/</span><b>GraphQL</b><span class="sep" aria-hidden="true">/</span><b>microservices &amp; caching at scale</b><span class="sep" aria-hidden="true">/</span><b>LLM evaluation &amp; observability</b><span class="sep" aria-hidden="true">/</span><span class="si">Java</span><span class="sep" aria-hidden="true">/</span><span class="si">LangGraph &amp; multi-agent orchestration</span><span class="sep" aria-hidden="true">/</span><span class="si">code-generating agents</span><span class="sep" aria-hidden="true">/</span><span class="si">MongoDB</span><span class="sep" aria-hidden="true">/</span><span class="si">AWS</span><span class="sep" aria-hidden="true">/</span><span class="si">Kubernetes</span><span class="sep" aria-hidden="true">/</span><span class="si">headless browsers</span>
+        <b>Python</b> <span class="sep" aria-hidden="true">/</span>
+        <b>C# .NET</b> <span class="sep" aria-hidden="true">/</span>
+        <b>Kafka</b> <span class="sep" aria-hidden="true">/</span>
+        <b>Elasticsearch</b> <span class="sep" aria-hidden="true">/</span>
+        <b>GraphQL</b> <span class="sep" aria-hidden="true">/</span>
+        <b>microservices &amp; caching at scale</b> <span class="sep" aria-hidden="true">/</span>
+        <b>LLM evaluation &amp; observability</b> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">Java</span> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">LangGraph &amp; multi-agent orchestration</span> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">code-generating agents</span> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">MongoDB</span> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">AWS</span> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">Kubernetes</span> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">headless browsers</span>
       </p>
     </div>
   </section>
