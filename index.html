@@ -443,6 +443,7 @@ section.block .wrap { position: relative; z-index: 1; }
 
 /* ---------- 13. STACK ---------- */
 .stack { font-size: 16px; line-height: 2.2; color: var(--muted); }
+.stack b, .stack .si { white-space: nowrap; }
 .stack b { color: var(--ink); }
 .stack .sep { color: var(--accent); padding: 0 10px; font-weight: 300; }
 
@@ -491,7 +492,7 @@ footer .status {
 .diagram svg { display: block; width: 100%; height: auto; }
 .diagram figcaption {
   font-size: 12.5px; line-height: 1.55; color: var(--faint); margin-top: 11px;
-  max-width: 360px; text-align: center;
+  max-width: 360px; text-align: center; text-wrap: balance;
 }
 .dg-box  { fill: var(--bg2); stroke: var(--hair); }
 .dg-gold { fill: var(--accent-dim); stroke: var(--gold); }
@@ -978,7 +979,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
               <rect class="dg-box" x="10" y="188" width="320" height="42"></rect>
               <text class="dg-txt" x="170" y="214" text-anchor="middle">PARALLEL WRITES · WAIT 0.5 S</text>
             </svg>
-            <figcaption>One lock per entity ID — no collisions; lock waits 10 s → 0.5 s.</figcaption>
+            <figcaption>One lock per ID — no collisions; 10 s → 0.5 s.</figcaption>
           </figure>
         </div>
 
@@ -1002,7 +1003,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           <h3>I challenge direction — with data</h3>
           <p>When production numbers say the strategy is wrong, I say it — at any altitude of the room.
           I've redirected a flagship program by putting the hard question to senior leadership, data in hand;
-          my team <b>proved the new direction in two months</b>. Ask me about it.</p>
+          my team <b>proved the new direction in two months</b>.</p>
         </div>
 
         <div class="lcard" data-reveal style="--i:1">
@@ -1082,7 +1083,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
     <div class="wrap">
       <div class="head" data-reveal><span class="idx">06</span><h2 id="h-stack">Working Stack</h2></div>
       <p class="stack" data-reveal>
-        <b>Python</b><span class="sep" aria-hidden="true">/</span><b>C# .NET</b><span class="sep" aria-hidden="true">/</span><b>Kafka</b><span class="sep" aria-hidden="true">/</span><b>Elasticsearch</b><span class="sep" aria-hidden="true">/</span><b>GraphQL</b><span class="sep" aria-hidden="true">/</span><b>microservices &amp; caching at scale</b><span class="sep" aria-hidden="true">/</span><b>LLM evaluation &amp; observability</b><span class="sep" aria-hidden="true">/</span>Java<span class="sep" aria-hidden="true">/</span>LangGraph &amp; multi-agent orchestration<span class="sep" aria-hidden="true">/</span>code-generating agents<span class="sep" aria-hidden="true">/</span>MongoDB<span class="sep" aria-hidden="true">/</span>AWS<span class="sep" aria-hidden="true">/</span>Kubernetes<span class="sep" aria-hidden="true">/</span>headless browsers
+        <b>Python</b><span class="sep" aria-hidden="true">/</span><b>C# .NET</b><span class="sep" aria-hidden="true">/</span><b>Kafka</b><span class="sep" aria-hidden="true">/</span><b>Elasticsearch</b><span class="sep" aria-hidden="true">/</span><b>GraphQL</b><span class="sep" aria-hidden="true">/</span><b>microservices &amp; caching at scale</b><span class="sep" aria-hidden="true">/</span><b>LLM evaluation &amp; observability</b><span class="sep" aria-hidden="true">/</span><span class="si">Java</span><span class="sep" aria-hidden="true">/</span><span class="si">LangGraph &amp; multi-agent orchestration</span><span class="sep" aria-hidden="true">/</span><span class="si">code-generating agents</span><span class="sep" aria-hidden="true">/</span><span class="si">MongoDB</span><span class="sep" aria-hidden="true">/</span><span class="si">AWS</span><span class="sep" aria-hidden="true">/</span><span class="si">Kubernetes</span><span class="sep" aria-hidden="true">/</span><span class="si">headless browsers</span>
       </p>
     </div>
   </section>
@@ -1127,7 +1128,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
       <a class="u quiet" href="https://www.linkedin.com/in/sharon-reytan/">LinkedIn</a>
       <a class="u quiet" href="tel:+972544470121">+972-54-4470121</a>
     </div>
-    <p class="status" aria-hidden="true">// built by hand — no framework, no build step. uptime: 100%</p>
+    <p class="status" aria-hidden="true">// I steer, Claude codes — no framework, no build step. uptime: 100%</p>
     <p class="print-url">sharonreytan.github.io</p>
   </div>
 </footer>
