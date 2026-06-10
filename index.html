@@ -248,11 +248,26 @@ html:not(.js) .theme-seg, html:not(.js) .js-print { display: none; }
 }
 .hero .contact span { padding: 6px 0 2px; display: inline-block; }
 .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: center; }
-.portrait { margin: 0; }
+.portrait { margin: 0; position: relative; }
 .portrait img {
   display: block; width: 280px; height: auto;
   border-radius: 18px; border: 1px solid var(--hair);
+  /* warm gold monochrome so the photo sits in the palette; full color on hover */
+  filter: grayscale(1) sepia(.34) saturate(1.15) brightness(.88) contrast(1.05);
+  transition: filter .45s ease-out;
 }
+.portrait::after {
+  content: ""; position: absolute; inset: 0; border-radius: 18px;
+  box-shadow: inset 0 0 44px rgba(15,15,17,.4);
+  pointer-events: none;
+  transition: opacity .45s ease-out;
+}
+.portrait:hover img { filter: none; }
+.portrait:hover::after { opacity: 0; }
+html[data-theme="light"] .portrait img {
+  filter: grayscale(1) sepia(.3) saturate(1.1) brightness(1.02) contrast(1.02);
+}
+html[data-theme="light"] .portrait::after { box-shadow: inset 0 0 36px rgba(28,26,22,.18); }
 /* hero entrance cascade — CSS only, killed by reduced-motion */
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
 .kicker        { animation: rise .6s var(--ease) both; }
@@ -587,7 +602,8 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
   .hero { padding: 0 0 18pt; }
   .hero h1 { font-size: 26pt; }
   .hero-grid { grid-template-columns: 1fr auto; gap: 20pt; }
-  .portrait img { width: 90pt; border-radius: 8pt; }
+  .portrait img { width: 90pt; border-radius: 8pt; filter: none; }
+  .portrait::after { display: none; }
   .pitch { font-size: 12pt; margin-top: 12pt; }
   .hero .contact { margin-top: 10pt; }
   .proofband { padding: 8pt 0; background: #fff; }
