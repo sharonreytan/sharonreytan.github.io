@@ -369,13 +369,42 @@ section.block .wrap { position: relative; z-index: 1; }
 .hp p { font-size: 15px; line-height: 1.75; color: var(--muted); text-wrap: pretty; }
 .hp p b { color: var(--ink); }
 
+/* live xpath demo — hovering the selector highlights the element it selects */
+.xp-demo {
+  margin-top: 18px; padding: 14px 16px;
+  background: var(--bg2); border: 1px solid var(--hair); border-radius: 4px;
+  cursor: default; transition: border-color .2s ease-out;
+}
+.xp-demo:hover { border-color: var(--accent); }
+.xp-demo code {
+  display: block;
+  font: 500 13.5px/1.5 Consolas, 'SF Mono', Menlo, monospace;
+  color: var(--accent);
+}
+.xp-why { margin-top: 8px; font-size: 12.5px; line-height: 1.55; color: var(--faint); }
+.xp-hit {
+  color: var(--accent) !important;
+  outline: 1px dashed var(--gold); outline-offset: 8px;
+}
+
 /* ---------- 11. LEADERSHIP ---------- */
-.lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 52px; }
-.lcard .roman { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .14em; margin-bottom: 13px; }
+.lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.lcard {
+  background: var(--bg2); border: 1px solid var(--hair); border-radius: 4px;
+  padding: 28px 26px 26px; position: relative;
+  transition: border-color .2s ease-out, transform .2s ease-out;
+}
+.lcard:hover { border-color: var(--accent); transform: translateY(-2px); }
+.lcard .icon { color: var(--accent); margin-bottom: 16px; }
+.lcard .icon svg { display: block; width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.lcard .roman {
+  position: absolute; top: 24px; right: 24px;
+  font-size: 12px; font-weight: 600; color: var(--faint); letter-spacing: .14em;
+}
 .lcard h3 {
   font-weight: 750; font-size: 17px; letter-spacing: -.015em; margin-bottom: 12px; line-height: 1.35;
 }
-.lcard p { font-size: 15px; line-height: 1.75; color: var(--muted); }
+.lcard p { font-size: 15px; line-height: 1.75; color: var(--muted); text-wrap: pretty; }
 .lcard p b { color: var(--ink); }
 
 /* ---------- 12. TIMELINE — rail with role-scope growth ---------- */
@@ -430,6 +459,7 @@ footer .line {
   font-style: italic; font-weight: 340;
   font-size: clamp(28px, 4.4vw, 38px);
   letter-spacing: -.02em; line-height: 1.35; max-width: 700px;
+  text-wrap: balance;
 }
 footer .line b { font-style: normal; font-weight: 800; color: var(--accent); }
 footer .sub { font-size: 16px; color: var(--muted); margin-top: 18px; max-width: 60ch; line-height: 1.7; }
@@ -823,13 +853,13 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
         <div class="hp" data-reveal style="--i:0">
           <h3>The agent safety gate</h3>
           <span class="patent">Patent filed — concept to code</span>
-          <p>How do you let an AI agent act inside a <b>live, authenticated banking session</b> — without trusting it?
-          The agent never touches the browser: every proposed action is validated against an <b>allowlist gate</b>,
-          then run by a deterministic executor. Rejections become precise feedback — the gate
-          <b>grew coverage instead of just blocking</b>.</p>
+          <p>How do you let an AI agent act inside a <b>live, authenticated session</b> — without trusting it?
+          The agent never touches the browser: an <b>allowlist gate</b> validates every action, a deterministic
+          executor runs it. Rejections become precise feedback — the gate <b>grew coverage instead of just
+          blocking</b>.</p>
 
           <figure class="diagram">
-            <svg viewBox="0 0 340 362" role="img" aria-label="Flow diagram of the agent safety gate: the AI agent proposes an action; the allowlist gate validates it; allowed actions run through a deterministic executor inside the live banking session; rejected actions feed back to the agent as precise feedback.">
+            <svg viewBox="0 0 340 362" role="img" aria-label="Flow diagram of the agent safety gate: the AI agent proposes an action; the allowlist gate validates it; allowed actions run through a deterministic executor inside the live authenticated session; rejected actions feed back to the agent as precise feedback.">
               <title>Agent safety gate flow</title>
               <defs>
                 <marker id="ah-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
@@ -849,7 +879,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
               <text class="dg-txt" x="130" y="231" text-anchor="middle">EXECUTOR</text>
               <path class="dg-edge" d="M130 246 V286" marker-end="url(#ah-a)"></path>
               <rect class="dg-box" x="20" y="292" width="220" height="56"></rect>
-              <text class="dg-txt" x="130" y="315" text-anchor="middle">LIVE BANKING</text>
+              <text class="dg-txt" x="130" y="315" text-anchor="middle">LIVE AUTHENTICATED</text>
               <text class="dg-txt" x="130" y="333" text-anchor="middle">SESSION</text>
               <path class="dg-edge dg-dash" d="M240 123 H302 V35 H248" marker-end="url(#ah-a)"></path>
               <text class="dg-note" transform="translate(322 180) rotate(-90)" text-anchor="middle">✗ rejected — feedback to agent</text>
@@ -861,27 +891,91 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
         <div class="hp" data-reveal style="--i:1">
           <h3>The eval framework &amp; observability</h3>
           <span class="nopatent"></span>
-          <p><b>Measure before you steer.</b> I built much of the evaluation framework that became the product's
-          steering signal — per-provider ground truth, full-session scoring, repeat runs. It proved the first
-          agents at <b>~98% precision/recall</b> — and justified killing that approach on cost anyway.
-          Plus the observability: one correlation id → the full session audit.</p>
+          <p><b>Measure before you steer.</b> I built much of the eval framework that became the product's
+          steering signal: full agent sessions in a <b>website simulator</b>, scored against <b>static ground
+          truth</b>, with scenario and consistency runs. It proved the first agents at <b>~98% precision/recall</b>
+          — and justified killing that approach on cost anyway.</p>
+
+          <figure class="diagram">
+            <svg viewBox="0 0 340 320" role="img" aria-label="Diagram of the evaluation framework: agents run full sessions inside a website simulator; the agent output and the static ground truth both feed a compare-and-score stage with scenario and consistency runs, producing the ~98% precision/recall signal.">
+              <title>Evaluation framework</title>
+              <defs>
+                <marker id="ah-d" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0L8 4L0 8z" class="dg-head"></path>
+                </marker>
+              </defs>
+              <rect class="dg-box" x="10" y="14" width="150" height="48"></rect>
+              <text class="dg-txt" x="85" y="42" text-anchor="middle">AGENTS</text>
+              <rect class="dg-box" x="180" y="14" width="150" height="48"></rect>
+              <text class="dg-txt" x="255" y="35" text-anchor="middle">WEBSITE</text>
+              <text class="dg-txt" x="255" y="52" text-anchor="middle">SIMULATOR</text>
+              <path class="dg-edge" d="M160 38 H174" marker-end="url(#ah-d)"></path>
+              <rect class="dg-box" x="180" y="110" width="150" height="48"></rect>
+              <text class="dg-txt" x="255" y="131" text-anchor="middle">AGENT</text>
+              <text class="dg-txt" x="255" y="148" text-anchor="middle">OUTPUT</text>
+              <path class="dg-edge" d="M255 62 V104" marker-end="url(#ah-d)"></path>
+              <rect class="dg-box" x="10" y="110" width="150" height="48"></rect>
+              <text class="dg-txt" x="85" y="131" text-anchor="middle">STATIC</text>
+              <text class="dg-txt" x="85" y="148" text-anchor="middle">GROUND TRUTH</text>
+              <path class="dg-edge" d="M85 158 V196" marker-end="url(#ah-d)"></path>
+              <path class="dg-edge" d="M255 158 V196" marker-end="url(#ah-d)"></path>
+              <rect class="dg-gold" x="20" y="202" width="300" height="56"></rect>
+              <text class="dg-goldtxt" x="170" y="226" text-anchor="middle">COMPARE &amp; SCORE</text>
+              <text class="dg-note" x="170" y="246" text-anchor="middle">scenario + consistency runs</text>
+              <path class="dg-edge" d="M170 258 V292" marker-end="url(#ah-d)"></path>
+              <text class="dg-goldtxt" x="170" y="312" text-anchor="middle">~98% PRECISION / RECALL</text>
+            </svg>
+            <figcaption>Full sessions, simulated website, scored against ground truth — the steering signal.</figcaption>
+          </figure>
         </div>
 
         <div class="hp" data-reveal style="--i:2">
-          <h3>The xpath generator</h3>
+          <h3 id="xp-target">The xpath generator</h3>
           <span class="nopatent"></span>
-          <p>Data acquisition lives or dies on selectors. I wrote the generator that crafts <b>xpaths robust
-          enough to survive layout changes</b> yet precise enough to never grab the wrong element.
-          The <b>code-generation pipeline runs on it</b>.</p>
+          <p>Data acquisition lives or dies on selectors. The generator crafts <b>xpaths that survive layout
+          changes</b> yet never grab the wrong element — the <b>code-generation pipeline runs on it</b>.
+          Proof, live:</p>
+
+          <div class="xp-demo" id="xp-demo">
+            <code>//h3[contains(., 'xpath generator')]</code>
+            <div class="xp-why">No ids, no positional indexes — anchored to meaning, so it survives redesigns.
+            Hover me: it selects this card's own title on this very page.</div>
+          </div>
         </div>
 
         <div class="hp" data-reveal style="--i:3">
           <h3>The Elasticsearch library &amp; the sync engine</h3>
           <span class="nopatent"></span>
-          <p>At AccessFintech I wrote the <b>org-wide Elasticsearch library</b> — a filter language that let any
-          engineer query an unforgiving datastore safely — and rebuilt the <b>sync engine</b> joining-on-write
-          across the entity graph. Proudest parts: a <b>per-ID lock manager</b> (lock waits 10 s → 0.5 s) and
-          <b>partial document updates in Elasticsearch — a mechanism that didn't exist; we invented it</b>.</p>
+          <p>The <b>org-wide Elasticsearch library</b> — a filter language that let any engineer query an
+          unforgiving datastore safely — and the sync engine's hardest internals: a <b>per-ID lock manager</b>
+          and <b>partial document updates in Elasticsearch — a mechanism that didn't exist; we invented it</b>.</p>
+
+          <figure class="diagram">
+            <svg viewBox="0 0 340 240" role="img" aria-label="Diagram of the per-ID lock manager: before, one global lock made every write wait, with lock waits of 10 seconds; after, each entity ID gets its own lock, writes proceed in parallel, and lock waits drop to half a second.">
+              <title>Per-ID lock manager</title>
+              <defs>
+                <marker id="ah-e" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0L8 4L0 8z" class="dg-head"></path>
+                </marker>
+              </defs>
+              <text class="dg-note" x="10" y="18">before</text>
+              <rect class="dg-box" x="10" y="26" width="320" height="42"></rect>
+              <text class="dg-txt" x="170" y="52" text-anchor="middle">ONE GLOBAL LOCK · WAIT 10 S</text>
+              <text class="dg-note" x="10" y="106">after — a lock per entity ID</text>
+              <rect class="dg-gold" x="10" y="114" width="98" height="40"></rect>
+              <text class="dg-goldtxt" x="59" y="139" text-anchor="middle">LOCK · ID A</text>
+              <rect class="dg-gold" x="121" y="114" width="98" height="40"></rect>
+              <text class="dg-goldtxt" x="170" y="139" text-anchor="middle">LOCK · ID B</text>
+              <rect class="dg-gold" x="232" y="114" width="98" height="40"></rect>
+              <text class="dg-goldtxt" x="281" y="139" text-anchor="middle">LOCK · ID C</text>
+              <path class="dg-edge" d="M59 154 V182" marker-end="url(#ah-e)"></path>
+              <path class="dg-edge" d="M170 154 V182" marker-end="url(#ah-e)"></path>
+              <path class="dg-edge" d="M281 154 V182" marker-end="url(#ah-e)"></path>
+              <rect class="dg-box" x="10" y="188" width="320" height="42"></rect>
+              <text class="dg-txt" x="170" y="214" text-anchor="middle">PARALLEL WRITES · WAIT 0.5 S</text>
+            </svg>
+            <figcaption>One lock per entity ID — no collisions; lock waits 10 s → 0.5 s.</figcaption>
+          </figure>
         </div>
 
       </div>
@@ -897,6 +991,9 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
       <div class="lead">
 
         <div class="lcard" data-reveal style="--i:0">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18"></path><path d="M5 17l4-6 4 3 6-9"></path><path d="M19 5h-4M19 5v4"></path></svg>
+          </div>
           <div class="roman">I.</div>
           <h3>I challenge direction — with data</h3>
           <p>When production numbers say the strategy is wrong, I say it — at any altitude of the room.
@@ -905,6 +1002,9 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
         </div>
 
         <div class="lcard" data-reveal style="--i:1">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><path d="M17.5 8.5h5M20 6v5"></path></svg>
+          </div>
           <div class="roman">II.</div>
           <h3>I grow engineers into leaders</h3>
           <p>I build teams from scratch and <b>bet on people early</b> — graduates get real ownership,
@@ -913,6 +1013,9 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
         </div>
 
         <div class="lcard" data-reveal style="--i:2">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2"></path></svg>
+          </div>
           <div class="roman">III.</div>
           <h3>I lead from the customer backward</h3>
           <p>Product and customer before tech — always. I aim the roadmap at what <b>actually moves
@@ -1134,6 +1237,14 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
   document.querySelectorAll('.js-print').forEach(function (b) {
     b.addEventListener('click', function () { window.print(); });
   });
+
+  /* ---- live xpath demo: hovering the selector highlights what it selects ---- */
+  var xpDemo = document.getElementById('xp-demo');
+  var xpTarget = document.getElementById('xp-target');
+  if (xpDemo && xpTarget) {
+    xpDemo.addEventListener('mouseenter', function () { xpTarget.classList.add('xp-hit'); });
+    xpDemo.addEventListener('mouseleave', function () { xpTarget.classList.remove('xp-hit'); });
+  }
 
   /* ---- hero event-stream canvas (skips: reduced motion, <760px) ---- */
   var cv = document.getElementById('stream');
