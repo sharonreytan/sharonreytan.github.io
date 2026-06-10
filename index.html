@@ -142,6 +142,18 @@ b { font-weight: 650; }
 }
 .u:hover { color: var(--accent); background-size: 100% 1px; border-color: transparent; }
 
+/* round icon links (LinkedIn, phone) */
+.iconlink {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--hair); color: var(--muted); text-decoration: none;
+  transition: color .18s ease-out, border-color .18s ease-out, transform .18s ease-out;
+}
+.iconlink:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+.iconlink svg { width: 17px; height: 17px; display: block; }
+.iconlink .ic-fill { fill: currentColor; }
+.iconlink .ic-stroke { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
 /* ---------- 3. UTILITIES ---------- */
 .vh {
   position: absolute; width: 1px; height: 1px;
@@ -242,7 +254,7 @@ html:not(.js) .theme-seg, html:not(.js) .js-print { display: none; }
   text-wrap: pretty;
 }
 .pitch b { font-weight: 700; }
-.hero .contact { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 8px 26px; align-items: baseline; }
+.hero .contact { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; }
 .hero .contact a, .hero .contact span {
   font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: .02em;
 }
@@ -675,8 +687,12 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
       </p>
       <div class="contact">
         <a class="u" href="mailto:SharonReytan@gmail.com">SharonReytan@gmail.com</a>
-        <a class="u" href="https://www.linkedin.com/in/sharon-reytan/">LinkedIn</a>
-        <a class="u" href="tel:+972544470121">+972-54-4470121</a>
+        <a class="iconlink" href="https://www.linkedin.com/in/sharon-reytan/" aria-label="LinkedIn profile" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ic-fill" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"></path></svg>
+        </a>
+        <a class="iconlink" href="tel:+972544470121" aria-label="Call +972-54-4470121" title="+972-54-4470121">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ic-stroke" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </a>
         <span>Israel</span>
         <span>3 patents filed</span>
       </div>
@@ -1156,11 +1172,15 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
       <a class="cta" href="mailto:SharonReytan@gmail.com">SharonReytan@gmail.com</a>
       <button class="ghostbtn" id="copy-email" type="button">copy email</button>
       <button class="ghostbtn js-print" type="button" aria-label="Save this page as a PDF">save as PDF</button>
-      <a class="u quiet" href="https://www.linkedin.com/in/sharon-reytan/">LinkedIn</a>
-      <a class="u quiet" href="tel:+972544470121">+972-54-4470121</a>
+      <a class="iconlink" href="https://www.linkedin.com/in/sharon-reytan/" aria-label="LinkedIn profile" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ic-fill" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"></path></svg>
+      </a>
+      <a class="iconlink" href="tel:+972544470121" aria-label="Call +972-54-4470121" title="+972-54-4470121">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ic-stroke" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </a>
     </div>
     <p class="status" aria-hidden="true">// I steer, Claude codes — no framework, no build step. uptime: 100%</p>
-    <p class="print-url">sharonreytan.github.io</p>
+    <p class="print-url">sharonreytan.github.io · +972-54-4470121 · linkedin.com/in/sharon-reytan</p>
   </div>
 </footer>
 
