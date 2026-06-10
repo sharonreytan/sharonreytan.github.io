@@ -12,7 +12,9 @@
 <meta property="og:description" content="Engineering leader — autonomous AI systems and distributed backends. 10+ years shipping production systems: &gt;1B events/day, 99.99% availability, 3 patents filed.">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://sharonreytan.github.io/">
+<meta property="og:image" content="https://sharonreytan.github.io/profile.jpg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sharonreytan.github.io/profile.jpg">
 <meta name="twitter:title" content="Sharon Reytan — Engineering Leader · Autonomous AI &amp; Distributed Systems">
 <meta name="twitter:description" content="Autonomous AI in the core, distributed backends at &gt;1B events/day. Leads teams, architects systems, writes the hard parts. 3 patents filed.">
 <meta name="color-scheme" content="dark light">
@@ -28,6 +30,7 @@
   "name": "Sharon Reytan",
   "jobTitle": "Engineering Leader — Autonomous AI Systems & Distributed Backends",
   "description": "Engineering leader with 10+ years shipping production systems — autonomous AI in the core, distributed backends at >1B events/day. 3 patents filed.",
+  "image": "https://sharonreytan.github.io/profile.jpg",
   "email": "mailto:SharonReytan@gmail.com",
   "telephone": "+972-54-4470121",
   "url": "https://sharonreytan.github.io/",
@@ -115,7 +118,7 @@ body {
   transition: background .25s ease, color .25s ease;
 }
 ::selection { background: var(--accent); color: var(--bg0); }
-.wrap { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
 a { color: var(--ink); }
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--accent);
@@ -174,7 +177,7 @@ html:not(.js) .theme-seg, html:not(.js) .js-print { display: none; }
 .anchors a {
   font-size: 12px; font-weight: 500; letter-spacing: .08em;
   color: var(--muted); text-decoration: none;
-  padding: 17px 9px;
+  padding: 17px 9px; white-space: nowrap;
   transition: color .15s ease-out;
 }
 .anchors a::before {
@@ -244,6 +247,12 @@ html:not(.js) .theme-seg, html:not(.js) .js-print { display: none; }
   font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: .02em;
 }
 .hero .contact span { padding: 6px 0 2px; display: inline-block; }
+.hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: center; }
+.portrait { margin: 0; }
+.portrait img {
+  display: block; width: 280px; height: auto;
+  border-radius: 18px; border: 1px solid var(--hair);
+}
 /* hero entrance cascade — CSS only, killed by reduced-motion */
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
 .kicker        { animation: rise .6s var(--ease) both; }
@@ -251,6 +260,7 @@ html:not(.js) .theme-seg, html:not(.js) .js-print { display: none; }
 .headline      { animation: rise .6s var(--ease) .16s both; }
 .pitch         { animation: rise .6s var(--ease) .24s both; }
 .hero .contact { animation: rise .6s var(--ease) .32s both; }
+.portrait      { animation: rise .6s var(--ease) .16s both; }
 
 /* ---------- 6. PROOF ROW (the 30-second skim anchor) ---------- */
 .proofband {
@@ -284,7 +294,7 @@ html:not(.js) .theme-seg, html:not(.js) .js-print { display: none; }
 section.block { position: relative; padding: 84px 0 88px; overflow: hidden; }
 section.band { background: var(--bg1); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
 .ghostnum {
-  position: absolute; top: 44px; left: calc(50% - 550px);
+  position: absolute; top: 44px; left: calc(50% - 670px);
   font-weight: 800; font-size: 140px; line-height: 1; letter-spacing: -.03em;
   color: var(--ghost-ink);
   pointer-events: none; user-select: none; z-index: 0;
@@ -338,7 +348,7 @@ section.block .wrap { position: relative; z-index: 1; }
 }
 .entry:hover .n { color: var(--accent-hi); }
 .entry:hover h3 { transform: translateX(1px); }
-.entry p { font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 18px; max-width: 65ch; }
+.entry p { font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 18px; max-width: 75ch; text-wrap: pretty; }
 .entry p b { color: var(--ink); }
 .stats { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .01em; }
 .stats span { display: inline-block; padding: 4px 0; }
@@ -356,7 +366,7 @@ section.block .wrap { position: relative; z-index: 1; }
   letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 13px;
 }
 .hp .nopatent { display: block; height: 13px; margin-bottom: 13px; }
-.hp p { font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 65ch; }
+.hp p { font-size: 15px; line-height: 1.75; color: var(--muted); text-wrap: pretty; }
 .hp p b { color: var(--ink); }
 
 /* ---------- 11. LEADERSHIP ---------- */
@@ -446,10 +456,11 @@ footer .status {
 .print-url { display: none; }
 
 /* ---------- 16. DIAGRAMS (inline SVG, token-aware, light/dark/print safe) ---------- */
-.diagram { margin: 26px 0 4px; max-width: 340px; }
+.diagram { margin: 26px auto 4px; max-width: 360px; }
 .diagram svg { display: block; width: 100%; height: auto; }
 .diagram figcaption {
-  font-size: 12.5px; line-height: 1.55; color: var(--faint); margin-top: 11px; max-width: 340px;
+  font-size: 12.5px; line-height: 1.55; color: var(--faint); margin-top: 11px;
+  max-width: 360px; text-align: center;
 }
 .dg-box  { fill: var(--bg2); stroke: var(--hair); }
 .dg-gold { fill: var(--accent-dim); stroke: var(--gold); }
@@ -499,11 +510,16 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
 }
 
 /* ---------- 19. RESPONSIVE ---------- */
-@media (max-width: 1180px) { .ghostnum { display: none; } }
+@media (max-width: 1480px) { .ghostnum { display: none; } }
 @media (max-width: 900px) {
   .entry, .trow { grid-template-columns: 1fr; gap: 14px; }
   .trow .scope { display: inline-block; margin: 0 0 0 16px; }
   .proof { grid-template-columns: repeat(3, 1fr); gap: 8px 20px; }
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+  .portrait { order: -1; }
+  .portrait img { width: 132px; border-radius: 14px; }
 }
 @media (max-width: 760px) {
   .hero { padding: 72px 0 64px; }
@@ -538,6 +554,8 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
   *, *::before, *::after { animation: none !important; }
   .hero { padding: 0 0 18pt; }
   .hero h1 { font-size: 26pt; }
+  .hero-grid { grid-template-columns: 1fr auto; gap: 20pt; }
+  .portrait img { width: 90pt; border-radius: 8pt; }
   .pitch { font-size: 12pt; margin-top: 12pt; }
   .hero .contact { margin-top: 10pt; }
   .proofband { padding: 8pt 0; background: #fff; }
@@ -597,22 +615,27 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
 <header class="hero" id="top">
   <canvas id="stream" aria-hidden="true"></canvas>
   <div class="fade" aria-hidden="true"></div>
-  <div class="wrap">
-    <p class="kicker">Engineering Leader — Autonomous AI Systems &amp; Distributed Backends</p>
-    <h1>Sharon Reytan</h1>
-    <p class="headline">10+ years shipping production systems — and the teams that run them.</p>
-    <p class="pitch">
-      I lead from the <b>customer and product backward to the tech</b> — autonomous AI in the core,
-      distributed backends at <b>&gt;1B events/day</b>. I <b>lead teams</b>, <b>architect the system</b>,
-      and <b>write the hard parts myself</b>.
-    </p>
-    <div class="contact">
-      <a class="u" href="mailto:SharonReytan@gmail.com">SharonReytan@gmail.com</a>
-      <a class="u" href="https://www.linkedin.com/in/sharon-reytan/">LinkedIn</a>
-      <a class="u" href="tel:+972544470121">+972-54-4470121</a>
-      <span>Israel</span>
-      <span>3 patents filed</span>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="kicker">Engineering Leader — Autonomous AI Systems &amp; Distributed Backends</p>
+      <h1>Sharon Reytan</h1>
+      <p class="headline">10+ years shipping production systems — and the teams that run them.</p>
+      <p class="pitch">
+        I lead from the <b>customer and product backward to the tech</b> — autonomous AI in the core,
+        distributed backends at <b>&gt;1B events/day</b>. I <b>lead teams</b>, <b>architect the system</b>,
+        and <b>write the hard parts myself</b>.
+      </p>
+      <div class="contact">
+        <a class="u" href="mailto:SharonReytan@gmail.com">SharonReytan@gmail.com</a>
+        <a class="u" href="https://www.linkedin.com/in/sharon-reytan/">LinkedIn</a>
+        <a class="u" href="tel:+972544470121">+972-54-4470121</a>
+        <span>Israel</span>
+        <span>3 patents filed</span>
+      </div>
     </div>
+    <figure class="portrait">
+      <img src="profile.jpg" alt="Sharon Reytan" width="1657" height="1618">
+    </figure>
   </div>
 </header>
 
