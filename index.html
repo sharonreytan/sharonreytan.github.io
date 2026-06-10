@@ -399,11 +399,19 @@ section.block .wrap { position: relative; z-index: 1; }
 
 /* live xpath demo — hovering the selector highlights the element it selects */
 .xp-demo {
-  margin-top: 18px; padding: 14px 16px;
+  position: relative; margin-top: 22px; padding: 16px 16px 14px;
   background: var(--bg2); border: 1px solid var(--hair); border-radius: 4px;
-  cursor: default; transition: border-color .2s ease-out;
+  cursor: crosshair; transition: border-color .2s ease-out;
 }
 .xp-demo:hover { border-color: var(--accent); }
+.xp-hint {
+  position: absolute; top: -10px; right: 14px;
+  font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); background: var(--bg0); border: 1px solid var(--accent);
+  border-radius: 999px; padding: 3px 10px;
+  transition: background .2s ease-out, color .2s ease-out;
+}
+.xp-demo:hover .xp-hint { background: var(--accent); color: var(--bg0); }
 .xp-demo code {
   display: block;
   font: 500 13.5px/1.5 Consolas, 'SF Mono', Menlo, monospace;
@@ -412,19 +420,20 @@ section.block .wrap { position: relative; z-index: 1; }
 .xp-why { margin-top: 8px; font-size: 12.5px; line-height: 1.55; color: var(--faint); }
 .xp-hit {
   color: var(--accent) !important;
-  outline: 1px dashed var(--gold); outline-offset: 8px;
+  background: var(--accent-dim);
+  outline: 1.5px dashed var(--gold); outline-offset: 8px; border-radius: 2px;
 }
 
 /* ---------- 11. LEADERSHIP ---------- */
 .lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.lcard {
+.lcard, .beyond > div {
   background: var(--bg2); border: 1px solid var(--hair); border-radius: 4px;
   padding: 28px 26px 26px; position: relative;
   transition: border-color .2s ease-out, transform .2s ease-out;
 }
-.lcard:hover { border-color: var(--accent); transform: translateY(-2px); }
-.lcard .icon { color: var(--accent); margin-bottom: 16px; }
-.lcard .icon svg { display: block; width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.lcard:hover, .beyond > div:hover { border-color: var(--accent); transform: translateY(-2px); }
+.lcard .icon, .beyond .icon { color: var(--accent); margin-bottom: 16px; }
+.lcard .icon svg, .beyond .icon svg { display: block; width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .lcard .roman {
   position: absolute; top: 24px; right: 24px;
   font-size: 12px; font-weight: 600; color: var(--faint); letter-spacing: .14em;
@@ -475,7 +484,7 @@ section.block .wrap { position: relative; z-index: 1; }
 .stack .sep { color: var(--accent); padding: 0 10px; font-weight: 300; }
 
 /* ---------- 14. BEYOND ---------- */
-.beyond { display: grid; grid-template-columns: repeat(3, 1fr); gap: 52px; }
+.beyond { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .beyond h3 {
   font-weight: 750; font-size: 16px; margin-bottom: 11px; letter-spacing: -.015em; line-height: 1.35;
 }
@@ -545,6 +554,9 @@ footer .status {
 }
 .d-bars .b { background: var(--hair); }
 .d-bars .a { background: var(--gold); min-width: 3px; }
+/* progressive bar animation — bars grow when revealed; full width in print/no-JS/reduced-motion */
+html.motion .d-bars i { width: 0; transition: width 1.1s var(--ease) .3s; }
+html.motion .in .d-bars i { width: var(--w); }
 .d-vals { font-size: 12.5px; font-weight: 600; color: var(--accent); white-space: nowrap; }
 
 /* ---------- 18. MOTION (all gated) ---------- */
@@ -636,6 +648,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
   .trow { padding: 8pt 0 8pt 16pt; }
   .lcard { padding: 6pt 0; }
   .entry p, .hp p, .lcard p, .trow p, .beyond p { color: #333; font-size: 10.5pt; line-height: 1.6; }
+  .d-bars i { width: var(--w) !important; transition: none !important; }
   a { color: #111 !important; text-decoration: none; border: none !important; }
   .proof li::before { display: none; }
   .proof .v { font-size: 18pt; }
@@ -898,7 +911,7 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           blocking</b>.</p>
 
           <figure class="diagram">
-            <svg viewBox="0 0 340 362" role="img" aria-label="Flow diagram of the agent safety gate: the AI agent proposes an action; the allowlist gate validates it; allowed actions run through a deterministic executor inside the live authenticated session; rejected actions feed back to the agent as precise feedback.">
+            <svg viewBox="0 0 420 362" role="img" aria-label="Flow diagram of the agent safety gate: the AI agent proposes an action; the allowlist gate validates it; allowed actions run through a deterministic executor inside the live authenticated session; rejected actions feed back to the agent as precise feedback.">
               <title>Agent safety gate flow</title>
               <defs>
                 <marker id="ah-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
@@ -920,8 +933,10 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
               <rect class="dg-box" x="20" y="292" width="220" height="56"></rect>
               <text class="dg-txt" x="130" y="315" text-anchor="middle">LIVE AUTHENTICATED</text>
               <text class="dg-txt" x="130" y="333" text-anchor="middle">SESSION</text>
-              <path class="dg-edge dg-dash" d="M240 123 H302 V35 H248" marker-end="url(#ah-a)"></path>
-              <text class="dg-note" transform="translate(322 180) rotate(-90)" text-anchor="middle">✗ rejected — feedback to agent</text>
+              <path class="dg-edge dg-dash" d="M240 123 H330 V35 H248" marker-end="url(#ah-a)"></path>
+              <text class="dg-note" x="338" y="80">✗ rejected —</text>
+              <text class="dg-note" x="338" y="98">feedback</text>
+              <text class="dg-note" x="338" y="116">to agent</text>
             </svg>
             <figcaption>The gate sits between agent and browser — never skipped; rejections become coverage.</figcaption>
           </figure>
@@ -976,9 +991,10 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
           Proof, live:</p>
 
           <div class="xp-demo" id="xp-demo">
+            <span class="xp-hint">hover me — it runs</span>
             <code>//h3[contains(., 'xpath generator')]</code>
-            <div class="xp-why">No ids, no positional indexes — anchored to meaning, so it survives redesigns.
-            Hover me: it selects this card's own title on this very page.</div>
+            <div class="xp-why">This selector is live: hover the box and watch it <b>light up the element it picks</b> —
+            this card's own title. No ids, no positional indexes — anchored to meaning, so it survives redesigns.</div>
           </div>
         </div>
 
@@ -1118,19 +1134,20 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
       <div class="head" data-reveal><span class="idx">06</span><h2 id="h-stack">Working Stack</h2></div>
       <p class="stack" data-reveal>
         <b>Python</b> <span class="sep" aria-hidden="true">/</span>
+        <b>LangGraph &amp; multi-agent orchestration</b> <span class="sep" aria-hidden="true">/</span>
+        <b>code-generating agents &amp; self-healing harnesses</b> <span class="sep" aria-hidden="true">/</span>
+        <b>LLM evals, validation &amp; observability</b> <span class="sep" aria-hidden="true">/</span>
+        <b>Claude Code &amp; AI-first SDLC</b> <span class="sep" aria-hidden="true">/</span>
         <b>C# .NET</b> <span class="sep" aria-hidden="true">/</span>
         <b>Kafka</b> <span class="sep" aria-hidden="true">/</span>
         <b>Elasticsearch</b> <span class="sep" aria-hidden="true">/</span>
-        <b>GraphQL</b> <span class="sep" aria-hidden="true">/</span>
         <b>microservices &amp; caching at scale</b> <span class="sep" aria-hidden="true">/</span>
-        <b>LLM evaluation &amp; observability</b> <span class="sep" aria-hidden="true">/</span>
-        <span class="si">Java</span> <span class="sep" aria-hidden="true">/</span>
-        <span class="si">LangGraph &amp; multi-agent orchestration</span> <span class="sep" aria-hidden="true">/</span>
-        <span class="si">code-generating agents</span> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">GraphQL</span> <span class="sep" aria-hidden="true">/</span>
         <span class="si">MongoDB</span> <span class="sep" aria-hidden="true">/</span>
         <span class="si">AWS</span> <span class="sep" aria-hidden="true">/</span>
         <span class="si">Kubernetes</span> <span class="sep" aria-hidden="true">/</span>
-        <span class="si">headless browsers</span>
+        <span class="si">headless browsers</span> <span class="sep" aria-hidden="true">/</span>
+        <span class="si">Java</span>
       </p>
     </div>
   </section>
@@ -1142,16 +1159,25 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
       <div class="head" data-reveal><span class="idx">07</span><h2 id="h-beyond">Beyond the Keyboard</h2></div>
       <div class="beyond">
         <div data-reveal style="--i:0">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"></circle><path d="M15.5 13l1.5 8-5-3-5 3 1.5-8"></path></svg>
+          </div>
           <h3>Challenger — League of Legends</h3>
           <p>The second-highest competitive rank. I'm in it for the <b>strategy, the team play, and the
           technique</b> — the same things that energize me at work.</p>
         </div>
         <div data-reveal style="--i:1">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          </div>
           <h3>Builder, even at rest</h3>
           <p>14 years of piano; <b>taught myself guitar</b> when the army base had none. I build <b>mobile games
           in Unity</b> and sell packages on the Asset Store. I don't wait for the right conditions.</p>
         </div>
         <div data-reveal style="--i:2">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><circle cx="11" cy="11" r="2"></circle></svg>
+          </div>
           <h3>Art school before computer science</h3>
           <p>Visual arts at Thelma Yellin. I think in <b>possibilities first, specs second</b> — it shows in the
           systems I design.</p>
@@ -1179,7 +1205,6 @@ html.motion [data-reveal].in { opacity: 1; transform: none; }
         <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ic-stroke" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
       </a>
     </div>
-    <p class="status" aria-hidden="true">// I steer, Claude codes — no framework, no build step. uptime: 100%</p>
     <p class="print-url">sharonreytan.github.io · +972-54-4470121 · linkedin.com/in/sharon-reytan</p>
   </div>
 </footer>
